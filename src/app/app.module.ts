@@ -23,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { Interceptor } from './interceptor';
+import { EmailComponent } from './components/email/email.component';
 
 const routes: Routes = [
   { path: 'create', component: CreateComponent }, //canActivate: [AuthGuard]
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'list', component: ListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'email', component: EmailComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ]
 
@@ -42,7 +44,8 @@ const routes: Routes = [
     DeleteComponent,
     HeaderComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,

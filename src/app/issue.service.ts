@@ -25,7 +25,7 @@ export class IssueService {
       description: description,
       severity: severity
     };
-    return this.http.post(`${this.uri}/issues/add`, issue);
+    return this.http.post(`${this.uri}/issues/add`, issue, { withCredentials: true });
   }
 
   updateIssue(id, title, responsible, description, severity, status) {
@@ -41,6 +41,10 @@ export class IssueService {
 
   deleteIssue(id) {
     return this.http.get(`${this.uri}/issues/delete/${id}`);
+  }
+
+  sendEmail(name, company, email, phone, message) {
+    return this.http.post(`${this.uri}/api/sendemail`, { name: name, company: company, email: email, phone: phone, message: message }, { withCredentials: true });
   }
 
 }

@@ -23,6 +23,11 @@
           Issues
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/email" [hidden]="!auth.loggedInStatus">
+          Email
+        </a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">

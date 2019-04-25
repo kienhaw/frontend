@@ -1,0 +1,96 @@
+<div class="mat-elevation-z8">
+  <mat-card>
+    <section class="mat-typography">
+      <h2>Email Template Example</h2>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="emailForm" class="email-form">
+      <mat-form-field class="col-md-6">
+        <mat-icon matPrefix style="margin-right:10px;">person</mat-icon>
+        <input
+          type="text"
+          matInput
+          placeholder="Name"
+          formControlName="name"
+          #name
+        />
+        <mat-error *ngIf="emailForm.controls['name'].errors?.required"
+          >Name is missing</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-icon matPrefix style="margin-right:10px;">email</mat-icon>
+        <input
+          type="email"
+          matInput
+          placeholder="Email Address"
+          formControlName="email"
+          #email
+        />
+        <mat-error *ngIf="emailForm.controls['email'].errors?.required"
+          >Email address is missing</mat-error
+        >
+
+        <mat-error *ngIf="emailForm.controls['email'].errors?.email"
+          >Email format is invalid</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-icon matPrefix style="margin-right:10px;">domain</mat-icon>
+        <input
+          type="text"
+          matInput
+          placeholder="Company"
+          formControlName="company"
+          #company
+        />
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-icon matPrefix style="margin-right:10px;">phone</mat-icon>
+        <input
+          type="text"
+          matInput
+          placeholder="Phone Number"
+          formControlName="phone"
+          #phone
+        />
+      </mat-form-field>
+      <mat-form-field class="col-md-12">
+        <mat-icon matPrefix style="margin-right:10px;"
+          >chat_bubble_outline</mat-icon
+        >
+        <textarea
+          matInput
+          placeholder="Message"
+          formControlName="message"
+          #message
+        ></textarea>
+        <mat-error *ngIf="emailForm.controls['message'].errors?.required"
+          >Message is missing</mat-error
+        >
+      </mat-form-field>
+      <br />
+      <br /><br />
+      <div class="col-md-12 text-right">
+        <button
+          type="submit"
+          (click)="
+            sendEmail(
+              name.value,
+              company.value,
+              email.value,
+              phone.value,
+              message.value
+            )
+          "
+          [disabled]="emailForm.pristine || emailForm.invalid"
+          mat-raised-button
+          color="accent"
+        >
+          Send
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
