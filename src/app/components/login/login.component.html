@@ -1,0 +1,49 @@
+<div class="mat-elevation-z8">
+  <br />
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Login</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br />
+    <form [formGroup]="loginForm" class="login-form">
+      <mat-form-field class="field-full-width">
+        <mat-icon matPrefix>person</mat-icon>
+        <input
+          type="text"
+          matInput
+          placeholder="Username"
+          formControlName="username"
+          #username
+        />
+        <mat-error *ngIf="loginForm.controls['username'].errors?.required"
+          >Username is missing</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          #password
+        />
+        <mat-error *ngIf="loginForm.controls['password'].errors?.required"
+          >Password is missing</mat-error
+        >
+      </mat-form-field>
+      <br />
+      <br /><br />
+      <button
+        type="submit"
+        (click)="login(username.value, password.value)"
+        [disabled]="loginForm.pristine || loginForm.invalid"
+        mat-raised-button
+        color="accent"
+      >
+        Login
+      </button>
+    </form>
+  </mat-card>
+</div>

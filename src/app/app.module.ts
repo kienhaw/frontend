@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MatMenuModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule, MatPaginatorModule, MatSortModule, MatTooltipModule, MatDialogModule } from '@angular/material';
@@ -18,12 +18,19 @@ import { EditComponent } from './components/issue/edit/edit.component';
 import { IssueService } from './issue.service';
 import { DeleteComponent } from './components/issue/delete/delete.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+
+import { AuthGuard } from './auth.guard';
+import { HomeComponent } from './components/home/home.component';
+import { Interceptor } from './interceptor';
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent },
+  { path: 'create', component: CreateComponent }, //canActivate: [AuthGuard]
   { path: 'edit/:id', component: EditComponent },
   { path: 'list', component: ListComponent },
-  { path: '', redirectTo: 'list', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ]
 
 @NgModule({
@@ -33,7 +40,9 @@ const routes: Routes = [
     CreateComponent,
     EditComponent,
     DeleteComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +70,7 @@ const routes: Routes = [
     MatTooltipModule,
     MatDialogModule
   ],
-  providers: [IssueService],
+  providers: [IssueService, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
   bootstrap: [AppComponent],
   entryComponents: [DeleteComponent]
 })

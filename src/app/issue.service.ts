@@ -11,7 +11,7 @@ export class IssueService {
   constructor(private http: HttpClient) { }
 
   getIssues() {
-    return this.http.get(`${this.uri}/issues`);
+    return this.http.get(`${this.uri}/api/issues/`, { withCredentials: true });
   }
 
   getIssueById(id) {

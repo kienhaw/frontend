@@ -46,3 +46,8 @@ td.mat-footer-cell {
   height: 32px;
   width: 32px;
 }
+
+.mat-form-field-prefix,
+.mat-form-field-suffix {
+  align-self: flex-end;
+}
